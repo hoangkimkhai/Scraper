@@ -3,11 +3,15 @@ from Website import Website
 
 
 def main():
+    a = open('config.txt')
+    username = a.readline()
+    password = a.readline().strip()
+
     web_site = Website("Linkedin", 'https://linkedin.com',
                        'https://www.linkedin.com/jobs/search/?geoId=102890719&keywords=',
                        'https://www.linkedin.com/uas/login')
     browser = Browser(web_site)
-    browser.log_in('your_linked_in_user_name', 'your_linked_in_password')
+    browser.log_in(username, password)
     topics = ['java', 'python']
     browser.generate_search_url(topics)
     browser.get_jobs_details(browser.search_urls[0])
